@@ -1,210 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles2.css">
-  <title>Financial Dashboard</title>
-  <style>
-    
-  </style>
+  <meta name="description" content="Cointhrive: panel de finanzas personales con saldos, tarjetas, últimos movimientos, porcentaje de gastos y evolución de ingresos y gastos de los últimos seis meses.">
+  <meta name="theme-color" content="#0b0f14">
+  <title>Cointhrive - Panel financiero</title>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
 </head>
 <body>
-
-  <header>
-    <h1 id="title"><a id="logo" href="file:///C:/wamp64/www/Cointhrive/index2.html"><span class="yellow">coin</span><span class="text-black">thrive</span></a></h1>
-    <nav class="menu">
-      <ul class="menu_items">
-        <li><a id="link" style="text-decoration: none;color: unset;" href="#">Inicio</a></li>
-        <li><a id="link" style="text-decoration: none;color: unset;" href="#">Movimientos</a></li>
-        <li><a id="link" style="text-decoration: none;color: unset;" href="#">Análisis</a></li>
-        <li><a id="link" style="text-decoration: none;color: unset;" href="#">Servicios</a></li>
-      </ul>
+  <header class="top">
+    <a class="logo" href="#resumen" aria-label="Cointhrive, inicio"><span class="y">coin</span>thrive</a>
+    <nav class="menu" aria-label="Principal">
+      <a href="#resumen" class="is-active">Inicio</a>
+      <a href="#movimientos">Movimientos</a>
+      <a href="#analisis">Análisis</a>
+      <a href="#entidades">Servicios</a>
     </nav>
+    <button class="eye" id="eye" type="button" aria-pressed="false" aria-label="Ocultar saldos" title="Ocultar saldos">
+      <i class="ph-bold ph-eye"></i>
+    </button>
   </header>
 
-  <div class="grid grid-cols-2">
-    <div class="cardp">
-      <p id="numerog" class="text-3xl font-bold">7.256,95 $</p>
-      <p class="text-gray-500">Saldo en cuentas</p>
-    </div>
-    <div class="cardp">
-      <p  id="numerog" class="text-3xl font-bold">1.584,74$</p>
-      <p class="text-gray-500">Tarjetas de crédito</p>
-    </div>
-  </div>
+  <main class="page">
+    <section id="resumen" class="intro">
+      <p class="date" id="hoy">Hoy</p>
+      <h1>Tu resumen financiero</h1>
+    </section>
 
-  <div>
-    <hr class="position: absolute; left: 0; right: 0; height: 1px; background-color: rgb(197, 197, 197);">
-  </div>
-    <div class="res">
-      <h2 id="title2">Tu resumen financiero</h2>
-    </div>
-  <div class="grid grid-cols-3">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">
-          <span>Global</span>
-          <span class="text-blue-500">&gt;</span>
-        </div>
-        <p>Hoy, 18:18h</p>
-      </div>
-      <div class="space-y-2">
-        <div class="flex">
-          <span>Cuentas</span>
-          <span>7.256,95$</span>
-        </div>
-        <div class="flex">
-          <span>Tarjeta de crédito</span>
-          <span>1.584,74$</span>
-        </div>
-        <div class="flex">
-          <span>Préstamos</span>
-          <span>0$</span>
-        </div>
-      </div>
-    </div>
+    <div class="grid">
+      <!-- Saldos principales -->
+      <article class="card kpi in-view" style="--d:.0s">
+        <span class="kpi__icon"><i class="ph-bold ph-bank"></i></span>
+        <p class="kpi__label">Saldo en cuentas</p>
+        <p class="kpi__value mask" data-count="7256.95">7.256,95 $</p>
+      </article>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">
-          <span>CaixaBanck</span>
-          <span class="text-blue-500">&gt;</span>
-        </div>
-        <p>Hoy, 18:18h</p>
-      </div>
-      <div class="space-y-2">
-        <div class="flex">
-          <span>Cuentas</span>
-          <span>7.256,95$</span>
-        </div>
-        <div class="flex">
-          <span>Tarjeta de crédito</span>
-          <span>1.584,74$</span>
-        </div>
-        <div class="flex">
-          <span>Préstamos</span>
-          <span>0$</span>
-        </div>
-      </div>
-    </div>
+      <article class="card kpi in-view" style="--d:.08s">
+        <span class="kpi__icon kpi__icon--card"><i class="ph-bold ph-credit-card"></i></span>
+        <p class="kpi__label">Tarjetas de crédito</p>
+        <p class="kpi__value mask" data-count="1584.74">1.584,74 $</p>
+      </article>
 
-    <div id="entidades" class="card">
-      <div class="flexi">
-        <div  class="btn">Añadir otra entidad</div>
-        <p id="vis" class="text-gray-500">Visualiza aquí cualquier banco, tarjeta, préstamo</p>
-      </div>
-    </div>
-  </div>
+      <article id="entidades" class="card add in-view" style="--d:.16s">
+        <button class="add__btn" type="button"><i class="ph-bold ph-plus"></i><span>Añadir otra entidad</span></button>
+        <p>Visualiza aquí cualquier banco, tarjeta, préstamo.</p>
+      </article>
 
-  <div class="grid grid-cols-3">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">
-          <span>Últimos movimientos</span>
-          <span class="text-blue-500">&gt;</span>
-        </div>
-        <p>Octubre 2024</p>
-      </div>
-      <div class="space-y-2">
-        <div class="flex">
-          <span>Carrefour express</span>
-          <span style="color:rgb(248, 137, 137)">-124,15$ </span>
-        </div>
-        <div class="flex">
-          <span>Video juegos</span>
-          <span style="color:rgb(248, 137, 137)" >-15,02$</span>
-        </div>
-        <div class="flex">
-          <span>Cine</span>
-          <span style="color:rgb(248, 137, 137)">-22,40$</span>
-        </div>
-      </div>
-    </div>
+      <!-- Entidades -->
+      <article class="card in-view" style="--d:.0s">
+        <header class="card__head">
+          <h2>Global <i class="ph-bold ph-caret-right"></i></h2>
+          <span class="stamp" data-time>Hoy, 18:18h</span>
+        </header>
+        <ul class="lines">
+          <li><span>Cuentas</span><b class="mask">7.256,95 $</b></li>
+          <li><span>Tarjeta de crédito</span><b class="mask">1.584,74 $</b></li>
+          <li><span>Préstamos</span><b class="mask">0 $</b></li>
+        </ul>
+      </article>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">
-          <span>Porcentaje de gastos</span>
-          <span class="text-blue-500">&gt;</span>
+      <article class="card in-view" style="--d:.08s">
+        <header class="card__head">
+          <h2>CaixaBank <i class="ph-bold ph-caret-right"></i></h2>
+          <span class="stamp" data-time>Hoy, 18:18h</span>
+        </header>
+        <ul class="lines">
+          <li><span>Cuentas</span><b class="mask">7.256,95 $</b></li>
+          <li><span>Tarjeta de crédito</span><b class="mask">1.584,74 $</b></li>
+          <li><span>Préstamos</span><b class="mask">0 $</b></li>
+        </ul>
+      </article>
+
+      <article id="movimientos" class="card in-view" style="--d:.16s">
+        <header class="card__head">
+          <h2>Últimos movimientos <i class="ph-bold ph-caret-right"></i></h2>
+          <span class="stamp">Octubre 2024</span>
+        </header>
+        <ul class="lines">
+          <li><span><i class="ph-bold ph-shopping-cart"></i>Carrefour express</span><b class="neg mask">-124,15 $</b></li>
+          <li><span><i class="ph-bold ph-game-controller"></i>Video juegos</span><b class="neg mask">-15,02 $</b></li>
+          <li><span><i class="ph-bold ph-film-slate"></i>Cine</span><b class="neg mask">-22,40 $</b></li>
+        </ul>
+      </article>
+
+      <!-- Análisis -->
+      <article id="analisis" class="card ring-card in-view" style="--d:0s">
+        <header class="card__head">
+          <h2>Porcentaje de gastos <i class="ph-bold ph-caret-right"></i></h2>
+          <span class="stamp">Octubre 2024</span>
+        </header>
+        <div class="ring" role="img" aria-label="70 por ciento del presupuesto gastado">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring__track" cx="60" cy="60" r="52"/>
+            <circle class="ring__bar" cx="60" cy="60" r="52" pathLength="100" style="--p:70"/>
+          </svg>
+          <span class="ring__value"><span data-count="70" data-int>70</span><small>%</small></span>
         </div>
-        <p>Octubre 2024</p>
-        <p id="porcentaje"> <br>70%</p>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="progress-indicator"><br></div>
-        <div class="mt-4">
-          <p>Previsto: 1.186,93$</p>
-          <p class="text-green-500">Ahorrados: 215,17$</p>
+        <ul class="lines lines--tight">
+          <li><span>Previsto</span><b class="mask">1.186,93 $</b></li>
+          <li><span>Ahorrados</span><b class="pos mask">215,17 $</b></li>
+        </ul>
+      </article>
+
+      <article class="card chart-card in-view" style="--d:.1s">
+        <header class="card__head">
+          <h2>Evolución <i class="ph-bold ph-caret-right"></i></h2>
+          <span class="stamp">Últimos 6 meses</span>
+        </header>
+        <div class="chart" role="img" aria-label="Gráfico de barras de ingresos y gastos de mayo a octubre">
+          <div class="month" style="--i:80;--g:40"><div class="bars"><span class="bar bar--in"></span><span class="bar bar--out"></span></div><p>MAY</p></div>
+          <div class="month" style="--i:70;--g:50"><div class="bars"><span class="bar bar--in"></span><span class="bar bar--out"></span></div><p>JUN</p></div>
+          <div class="month" style="--i:75;--g:55"><div class="bars"><span class="bar bar--in"></span><span class="bar bar--out"></span></div><p>JUL</p></div>
+          <div class="month" style="--i:90;--g:65"><div class="bars"><span class="bar bar--in"></span><span class="bar bar--out"></span></div><p>AGO</p></div>
+          <div class="month" style="--i:65;--g:55"><div class="bars"><span class="bar bar--in"></span><span class="bar bar--out"></span></div><p>SEP</p></div>
+          <div class="month" style="--i:50;--g:45"><div class="bars"><span class="bar bar--in"></span><span class="bar bar--out"></span></div><p>OCT</p></div>
         </div>
-      </div>
+        <div class="legend"><span><i class="sw sw--in"></i>Ingresos</span><span><i class="sw sw--out"></i>Gastos</span></div>
+      </article>
     </div>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">
-          <span>Evolución</span>
-          <span class="text-blue-500">&gt;</span>
-        </div>
-        <p id="u6">Últimos 6 meses</p>
-      </div>
-      <div>
-        
-        <div class="chart">
-          <div class="chart">
-            <div class="month">
-              <div class="bar-container">
-                <div class="bar ingresos" style="height: 80px;"></div>
-                <div class="bar gastos" style="height: 40px;"></div>
-              </div>
-              <p id="tbar">MAY</p>
-            </div>
-            <div class="month">
-              <div class="bar-container">
-                <div class="bar ingresos" style="height: 70px;"></div>
-                <div class="bar gastos" style="height: 50px;"></div>
-              </div>
-              <p id="tbar">JUN</p>
-            </div>
-            <div class="month">
-              <div class="bar-container">
-                <div class="bar ingresos" style="height: 75px;"></div>
-                <div class="bar gastos" style="height: 55px;"></div>
-              </div>
-              <p id="tbar">JUL</p>
-            </div>
-            <div class="month">
-              <div class="bar-container">
-                <div class="bar ingresos" style="height: 90px;"></div>
-                <div class="bar gastos" style="height: 65px;"></div>
-              </div>
-              <p id="tbar">AGO</p>
-            </div>
-            <div class="month">
-              <div class="bar-container">
-                <div class="bar ingresos" style="height: 65px;"></div>
-                <div class="bar gastos" style="height: 55px;"></div>
-              </div>
-              <p id="tbar">SEP</p>
-            </div>
-            <div class="month">
-              <div class="bar-container">
-                <div class="bar ingresos" style="height: 50px;"></div>
-                <div class="bar gastos" style="height: 45px;"></div>
-              </div>
-              <p id="tbar">OCT</p>
-            </div>
-          </div>
-          
-        </div>
-      
-        <div class="gi"> 
-         <span class="text-blue-500 mr-4">&#128309 Ingresos</span>
-          <span class="text-red-500"> &#128308 Gastos</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    <p class="demo">Panel de demostración con datos de ejemplo.</p>
+  </main>
 
+  <script src="app.js" defer></script>
 </body>
 </html>
